@@ -30,7 +30,7 @@ public class ProjectileGun : MonoBehaviour
     }
     void Shoot() 
     {
-        Debug.Log("shoot!");
+        //Debug.Log("shoot!");
         GameObject bullet =  Instantiate(bulletPrefab, bulletStart.transform.position, transform.rotation);
         bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
         Destroy(bullet, 2);
