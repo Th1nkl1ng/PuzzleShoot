@@ -13,6 +13,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool shoot;
+		public bool interact;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -48,6 +49,12 @@ namespace StarterAssets
 		public void OnShoot(InputValue value) 
 		{
 			shoot = value.isPressed;
+		}
+
+
+		public void OnInteract(InputValue value) 
+		{
+			interact = value.isPressed;
 		}
 #endif
 
