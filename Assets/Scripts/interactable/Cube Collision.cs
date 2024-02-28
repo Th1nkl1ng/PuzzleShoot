@@ -10,6 +10,12 @@ public class CubeCollision : MonoBehaviour
     GameObject CollisionActor;
     [SerializeField]
     BoxCollider OffArea;
+    [SerializeField]
+    int doorx;
+    [SerializeField]
+    int doory;
+    [SerializeField]
+    int doorz;
 
     int doorTranslate  = 6;
 
@@ -43,6 +49,6 @@ public class CubeCollision : MonoBehaviour
     {
         collider = OffArea;
         //Debug.Log(" TEST 2 ");
-        DoorPrefab.transform.position = new Vector3(-9, 3, 81);
+        DoorPrefab.transform.position = new Vector3(doorx, doory, doorz);
     }
 }

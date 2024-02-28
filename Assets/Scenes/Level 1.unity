@@ -1116,6 +1116,9 @@ MonoBehaviour:
   DoorPrefab: {fileID: 202385698}
   CollisionActor: {fileID: 8633705712580630360}
   OffArea: {fileID: 1474168253}
+  doorx: -9
+  doory: 3
+  doorz: 81
 --- !u!1 &411461662
 GameObject:
   m_ObjectHideFlags: 0
