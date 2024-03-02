@@ -273,7 +273,7 @@
                 {
                     "name": "",
                     "id": "ff960e88-be75-4b95-8cf5-c185f9ca415c",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<XInputController>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
