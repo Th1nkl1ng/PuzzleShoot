@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CinemachineTarget
   - LevelExit
+  - Enemy
+  - Button
   layers:
   - Default
   - TransparentFX

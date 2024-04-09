@@ -1,104 +1,53 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
-public class GunSystem : MonoBehaviour
+public class HitScanGun : MonoBehaviour
 {
-    //Gun stats
-    public int damage;
-    public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
-    public int magazineSize, bulletsPerTap;
-    public bool allowButtonHold;
-    int bulletsLeft, bulletsShot;
+    [SerializeField] GunData gunData;
+    [SerializeField] Transform muzzle;
 
-    //bools 
-    bool shooting, readyToShoot, reloading;
+    float timeSinceLastShot;
 
-    //Reference
-    public Camera fpsCam;
-    public Transform attackPoint;
-    public RaycastHit rayHit;
-    public LayerMask whatIsEnemy;
-
-    //Graphics
-    public GameObject muzzleFlash, bulletHoleGraphic;
-    //public CamShake camShake;
-    public float camShakeMagnitude, camShakeDuration;
-    public TextMeshProUGUI text;
-
-    private void Awake()
+    private void Start()
     {
-        bulletsLeft = magazineSize;
-        readyToShoot = true;
+        PlayerShoot.shootInput += Shoot;
     }
+
+    private bool CanShoot() => !gunData.reloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f);
+
+    public void Shoot()
+    {
+        //Debug.Log("test");
+        if (gunData.currentAmmo > 0)
+        {
+            if (CanShoot())
+            {
+                if (Physics.Raycast(muzzle.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                {
+                    Debug.Log(hitInfo.transform.name);
+                }
+
+                gunData.currentAmmo--;
+                timeSinceLastShot = 0;
+                OnGunShot();
+            }
+        }
+    }
+    
     private void Update()
     {
-        MyInput();
-
-        //SetText
-        text.SetText(bulletsLeft + " / " + magazineSize);
+        timeSinceLastShot += Time.deltaTime;
+        Debug.DrawRay(muzzle.position, muzzle.forward);
     }
-    private void MyInput()
+
+    private void OnGunShot()
     {
-        if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
-        else shooting = Input.GetKeyDown(KeyCode.Mouse0);
-
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
-
-        //Shoot
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
-        {
-            bulletsShot = bulletsPerTap;
-            Shoot();
-        }
+        throw new NotImplementedException();
     }
-    private void Shoot()
-    {
-        readyToShoot = false;
 
-        //Spread
-        float x = Random.Range(-spread, spread);
-        float y = Random.Range(-spread, spread);
-
-        //Calculate Direction with Spread
-        Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
-
-        //RayCast
-        if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, whatIsEnemy))
-        {
-            Debug.Log(rayHit.collider.name);
-            //if enemies are added to the game
-            if (rayHit.collider.CompareTag("Enemy"))
-                //rayHit.collider.GetComponent<ShootingAi>().TakeDamage(damage);
-                Debug.Log("Enemy hit!");
-        }
-
-        //ShakeCamera
-        //camShake.Shake(camShakeDuration, camShakeMagnitude);
-
-        //Graphics
-        Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
-        Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
-
-        bulletsLeft--;
-        bulletsShot--;
-
-        Invoke("ResetShot", timeBetweenShooting);
-
-        if (bulletsShot > 0 && bulletsLeft > 0)
-            Invoke("Shoot", timeBetweenShots);
-    }
-    private void ResetShot()
-    {
-        readyToShoot = true;
-    }
-    private void Reload()
-    {
-        reloading = true;
-        Invoke("ReloadFinished", reloadTime);
-    }
-    private void ReloadFinished()
-    {
-        bulletsLeft = magazineSize;
-        reloading = false;
-    }
+    
 }
+
+    
