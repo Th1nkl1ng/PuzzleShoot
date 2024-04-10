@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: HitPistol
   m_EditorClassIdentifier: 
   name: Hitscan Pistol
-  damage: 15
+  damage: 7
   maxDistance: 200
-  currentAmmo: 20
+  currentAmmo: 8
   magSize: 20
   fireRate: 100
   reloadTime: 1.5
-  reloading: 0
+  reloading: 1

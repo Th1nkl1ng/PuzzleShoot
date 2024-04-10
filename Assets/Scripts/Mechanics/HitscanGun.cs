@@ -13,21 +13,45 @@ public class HitScanGun : MonoBehaviour
     private void Start()
     {
         PlayerShoot.shootInput += Shoot;
+        PlayerShoot.reloadInput += StartReload;
+    }
+
+    public void StartReload()
+    {
+        if (!gunData.reloading)
+        {
+            StartCoroutine(Reload());
+        }
+    }
+
+    private IEnumerator Reload()
+    {
+        gunData.reloading = true;
+
+        yield return new WaitForSeconds(gunData.reloadTime);
+
+        gunData.currentAmmo = gunData.magSize;
+
+        gunData.reloading = false;
     }
 
     private bool CanShoot() => !gunData.reloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f);
 
     public void Shoot()
     {
-        //Debug.Log("test");
+        
         if (gunData.currentAmmo > 0)
         {
+            //Debug.Log("test");
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
+            {
+                Debug.Log(hitInfo.transform.name);
+                CanDamage damageable = hitInfo.transform.GetComponent<CanDamage>();
+                damageable?.Damage(gunData.damage);
+            } 
             if (CanShoot())
             {
-                if (Physics.Raycast(muzzle.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
-                {
-                    Debug.Log(hitInfo.transform.name);
-                }
+                
 
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
@@ -44,7 +68,7 @@ public class HitScanGun : MonoBehaviour
 
     private void OnGunShot()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     
