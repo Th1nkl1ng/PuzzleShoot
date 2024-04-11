@@ -7,6 +7,8 @@ public class HitScanGun : MonoBehaviour
 {
     [SerializeField] GunData gunData;
     [SerializeField] Transform muzzle;
+    [SerializeField] Rigidbody boxRB;
+    public int force = 10;
 
     float timeSinceLastShot;
 
@@ -45,9 +47,15 @@ public class HitScanGun : MonoBehaviour
             //Debug.Log("test");
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
             {
-                Debug.Log(hitInfo.transform.name);
+                //Debug.Log(hitInfo.transform.name);
                 CanDamage damageable = hitInfo.transform.GetComponent<CanDamage>();
                 damageable?.Damage(gunData.damage);
+                if (hitInfo.transform.gameObject.GetComponent<Rigidbody>())
+                {
+                    Debug.Log("object does have rigid body");
+                    boxRB = hitInfo.rigidbody;
+                    boxRB.AddForce(transform.forward * force);
+                }
             } 
             if (CanShoot())
             {

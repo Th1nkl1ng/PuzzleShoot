@@ -753,7 +753,7 @@ Transform:
   m_GameObject: {fileID: 133932365}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21, y: -0.43, z: 0}
+  m_LocalPosition: {x: 11.38, y: 2.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1666,6 +1666,11 @@ MonoBehaviour:
   door2x: 4.6
   door2y: 3
   door2z: 90
+--- !u!54 &389845688 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 2738372663043887889, guid: 1aeb0249226a85d43b9131ce7b0d287e, type: 3}
+  m_PrefabInstance: {fileID: 4905641742721257394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &411461662
 GameObject:
   m_ObjectHideFlags: 0
@@ -2957,6 +2962,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunData: {fileID: 11400000, guid: fffbff00b9e340140a1046dc32d6d232, type: 2}
   muzzle: {fileID: 625774122}
+  boxRB: {fileID: 389845688}
+  force: 10
 --- !u!1001 &746329221
 PrefabInstance:
   m_ObjectHideFlags: 0
