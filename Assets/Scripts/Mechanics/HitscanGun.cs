@@ -52,7 +52,7 @@ public class HitScanGun : MonoBehaviour
                 damageable?.Damage(gunData.damage);
                 if (hitInfo.transform.gameObject.GetComponent<Rigidbody>())
                 {
-                    Debug.Log("object does have rigid body");
+                    //Debug.Log("object does have rigid body");
                     boxRB = hitInfo.rigidbody;
                     boxRB.AddForce(transform.forward * force);
                 }
