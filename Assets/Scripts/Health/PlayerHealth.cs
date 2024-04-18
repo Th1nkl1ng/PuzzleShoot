@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor.SceneManagement;
 public class PlayerHealth : MonoBehaviour 
 {
+	public GameObject emptyPostion;
+	public GameObject playerCapsule;
 	public float health;
 	public TMP_Text healthText;
 	public float MaxHealth = 100f;
@@ -22,5 +25,14 @@ public class PlayerHealth : MonoBehaviour
     {
 		healthText.text = health.ToString();
 		health = Mathf.Clamp(health, 0, MaxHealth);
+		if (health <= 0)
+        {
+			//EditorSceneManager.LoadScene(EditorSceneManager.GetActiveScene().buildIndex);
+			health = 100;
+			playerCapsule.transform.position = emptyPostion.transform.position + new Vector3(0,1,0);
+			
+			//playerCapsule.transform.position = new Vector3(emptyPostion.transform.position.x, emptyPostion.transform.position.y, emptyPostion.transform.position.z);
+
+		}
     }
 }

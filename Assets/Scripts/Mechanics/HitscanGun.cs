@@ -12,6 +12,11 @@ public class HitScanGun : MonoBehaviour
 
     float timeSinceLastShot;
 
+    void Awake()
+    {
+        //DontDestroyOnLoad(this.gameObject);
+    }
+
     private void Start()
     {
         PlayerShoot.shootInput += Shoot;
@@ -45,7 +50,8 @@ public class HitScanGun : MonoBehaviour
         if (gunData.currentAmmo > 0)
         {
             //Debug.Log("test");
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
+            if (Physics.Raycast(transform.position, transform.forward, 
+                out RaycastHit hitInfo, gunData.maxDistance))
             {
                 //Debug.Log(hitInfo.transform.name);
                 CanDamage damageable = hitInfo.transform.GetComponent<CanDamage>();
