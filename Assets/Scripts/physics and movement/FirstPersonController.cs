@@ -64,6 +64,7 @@ namespace StarterAssets
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
+		public Animator animator;
 	
 #if ENABLE_INPUT_SYSTEM
 		private PlayerInput _playerInput;
@@ -115,6 +116,11 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+
+			float xaxis = Input.GetAxis("Horizontal");
+			float zaxis = Input.GetAxis("Vertical");
+
+			animator.SetFloat("speed", Mathf.Abs(xaxis) + Mathf.Abs(zaxis));
 		}
 
 		private void LateUpdate()

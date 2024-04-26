@@ -13,6 +13,8 @@ public class ProjectileGun : MonoBehaviour
     private GameObject bulletStart;
     [SerializeField]
     private float bulletSpeed = 600;
+    public Animator animator;
+    private bool shootanim = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +24,14 @@ public class ProjectileGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("isShooting", shootanim);
+        shootanim = false;
         if (_input.shoot) 
         {
+            shootanim = true;
             Shoot();
             _input.shoot = false;
+            
         }
     }
     void Shoot() 

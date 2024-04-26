@@ -9,6 +9,8 @@ public class HitScanGun : MonoBehaviour
     [SerializeField] Transform muzzle;
     [SerializeField] Rigidbody boxRB;
     public int force = 10;
+    public Animator animator;
+    private bool shootanim = false;
 
     float timeSinceLastShot;
 
@@ -49,6 +51,7 @@ public class HitScanGun : MonoBehaviour
         
         if (gunData.currentAmmo > 0)
         {
+            shootanim = true;
             //Debug.Log("test");
             if (Physics.Raycast(transform.position, transform.forward, 
                 out RaycastHit hitInfo, gunData.maxDistance))
@@ -65,11 +68,10 @@ public class HitScanGun : MonoBehaviour
             } 
             if (CanShoot())
             {
-                
-
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
                 OnGunShot();
+                
             }
         }
     }
@@ -78,11 +80,15 @@ public class HitScanGun : MonoBehaviour
     {
         timeSinceLastShot += Time.deltaTime;
         Debug.DrawRay(muzzle.position, muzzle.forward);
+        
+        animator.SetBool("isShooting", shootanim);
+        shootanim = false;
     }
 
     private void OnGunShot()
     {
         //throw new NotImplementedException();
+        
     }
 
     
