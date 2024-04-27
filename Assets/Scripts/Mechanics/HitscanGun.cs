@@ -11,6 +11,7 @@ public class HitScanGun : MonoBehaviour
     public int force = 10;
     public Animator animator;
     private bool shootanim = false;
+    public ParticleSystem muzzleFlash;
 
     float timeSinceLastShot;
 
@@ -48,7 +49,8 @@ public class HitScanGun : MonoBehaviour
 
     public void Shoot()
     {
-        
+        muzzleFlash.Play();
+
         if (gunData.currentAmmo > 0)
         {
             shootanim = true;
