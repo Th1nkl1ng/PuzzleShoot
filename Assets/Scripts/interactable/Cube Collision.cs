@@ -31,6 +31,9 @@ public class CubeCollision : MonoBehaviour
     int door2z;
 
     int doorTranslate  = 6;
+    [Header("optional transforms")]
+    [SerializeField]
+    int TranslateZ;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +54,7 @@ public class CubeCollision : MonoBehaviour
         {
             //Debug.Log(" TEST ");
             //door 1 go up
-            DoorPrefab.transform.position += new Vector3(0, doorTranslate, 0);
+            DoorPrefab.transform.position += new Vector3(0, doorTranslate, TranslateZ);
             // door 2 stays where it is
             DoorPrefab2.transform.position = new Vector3(door2x, door2y, door2z);
         }
