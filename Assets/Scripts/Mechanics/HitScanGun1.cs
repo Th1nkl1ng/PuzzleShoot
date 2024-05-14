@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitScanGun : MonoBehaviour
+public class HitScanGun2 : MonoBehaviour
 {
     [SerializeField] GunData gunData;
     [SerializeField] Transform muzzle;
@@ -49,10 +49,13 @@ public class HitScanGun : MonoBehaviour
 
     public void Shoot()
     {
-        if (muzzleFlash != null)
-        {
+        
+        if(muzzleFlash != null)
+        { 
             muzzleFlash.Play();
         }
+
+      
 
         if (gunData.currentAmmo > 0)
         {
