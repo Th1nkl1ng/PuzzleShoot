@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Button
   - LevelExit2
+  - GameEnd
+  - PuzzleCube
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ public class LevelLoading : MonoBehaviour
 {
     public GameObject emptyPostion;
     public GameObject playerCapsule;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,12 @@ public class LevelLoading : MonoBehaviour
         {
             playerCapsule.transform.position = emptyPostion.transform.position + new Vector3(0, 1, 0);
             EditorSceneManager.LoadScene(EditorSceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else if (other.tag == "GameEnd")
+        {
+            EditorSceneManager.LoadScene(0);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
