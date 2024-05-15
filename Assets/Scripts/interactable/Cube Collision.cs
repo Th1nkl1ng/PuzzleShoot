@@ -58,13 +58,14 @@ public class CubeCollision : MonoBehaviour
             // door 2 stays where it is
             DoorPrefab2.transform.position = new Vector3(door2x, door2y, door2z);
         }
-        else 
+        // This may be desabled as it caused too many inconsistent interactions
+        /*else 
         {
             //door 1 stays where it is / goes back to where it was
             DoorPrefab.transform.position = new Vector3(door1x, door1y, door1z);
             // Door 2 moves up
             DoorPrefab2.transform.position += new Vector3(0, doorTranslate, 0);
-        }
+        }*/
 
 
         
