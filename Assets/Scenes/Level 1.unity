@@ -1653,7 +1653,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5656024366888235835, guid: 1aeb0249226a85d43b9131ce7b0d287e, type: 3}
   m_PrefabInstance: {fileID: 4905641742721257394}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &389845687
+--- !u!114 &389845683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1662,7 +1662,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 389845681}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f77cfd25c99a434190dc0cb7ba54f5c, type: 3}
+  m_Script: {fileID: 11500000, guid: eadc2d147177065419bcae8b18e8130f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DoorPrefab: {fileID: 202385698}
@@ -9140,8 +9140,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7761915708375295512, guid: 1aeb0249226a85d43b9131ce7b0d287e, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 389845687}
+      insertIndex: -1
+      addedObject: {fileID: 389845683}
   m_SourcePrefab: {fileID: 100100000, guid: 1aeb0249226a85d43b9131ce7b0d287e, type: 3}
 --- !u!1001 &5393215579111688471
 PrefabInstance:
